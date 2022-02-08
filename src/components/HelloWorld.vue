@@ -37,6 +37,7 @@ const log = () => {
             Edit
             <code>components/HelloWorld.vue</code> to test hot module replacement.
         </p>
+        <p>test</p>
     </div>
 </template>
 
