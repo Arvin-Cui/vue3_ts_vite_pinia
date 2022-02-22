@@ -1,19 +1,8 @@
-<script setup lang="ts">
-import { ref } from 'vue'
-
-defineProps<{ msg: string }>()
-
-const count = ref(0)
-const log = () => {
-    console.log('11')
-
-}
-</script>
-
 <template>
     <div>
-        <h1>{{ count }}</h1>
-
+        <n-button>naive-ui</n-button>
+        <h1>{{ mainStore.name }}</h1>
+        <h1>{{ mainStore.nameLength }}</h1>
         <p>
             Recommended IDE setup:
             <a href="https://code.visualstudio.com/" target="_blank">VSCode</a>
@@ -37,11 +26,38 @@ const log = () => {
             Edit
             <code>components/HelloWorld.vue</code> to test hot module replacement.
         </p>
-        <p>test</p>
+        <p class="test" @click="log">test</p>
     </div>
 </template>
+<script setup lang="ts">
 
-<style scoped>
+import { ref } from 'vue'
+import { NButton } from "naive-ui"
+
+defineProps<{ msg: string }>()
+
+const count = ref(0)
+
+import { useMainStore } from "@/store/main.ts"
+const mainStore = useMainStore()
+
+const log = () => {
+    console.log(import.meta.env.VITE_APP_WEB_URL)
+    // updateName()
+}
+const updateName = () => {
+    // $patch 修改 store 中的数据
+    // mainStore.$patch({
+    //     name: '名称被修改了,nameLength也随之改变了'
+    // })
+    mainStore.name = '23'
+    mainStore.updataUser('111111ad')
+}
+</script>
+<style lang="scss" scoped>
+.test {
+    color: $test-color;
+}
 a {
     color: #42b983;
 }
